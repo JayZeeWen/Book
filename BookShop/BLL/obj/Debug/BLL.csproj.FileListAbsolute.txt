@@ -1,0 +1,14 @@
+F:\Practice\Book\BookShop\BLL\bin\Debug\BookShop.BLL.dll
+F:\Practice\Book\BookShop\BLL\bin\Debug\BookShop.BLL.pdb
+F:\Practice\Book\BookShop\BLL\bin\Debug\BookShop.DAL.dll
+F:\Practice\Book\BookShop\BLL\bin\Debug\BookShop.Model.dll
+F:\Practice\Book\BookShop\BLL\bin\Debug\Maticsoft.Common.dll
+F:\Practice\Book\BookShop\BLL\bin\Debug\BookShop.DBUtility.dll
+F:\Practice\Book\BookShop\BLL\bin\Debug\System.Data.SQLite.dll
+F:\Practice\Book\BookShop\BLL\bin\Debug\MySql.Data.dll
+F:\Practice\Book\BookShop\BLL\bin\Debug\BookShop.DAL.pdb
+F:\Practice\Book\BookShop\BLL\bin\Debug\BookShop.Model.pdb
+F:\Practice\Book\BookShop\BLL\bin\Debug\BookShop.DBUtility.pdb
+F:\Practice\Book\BookShop\BLL\obj\Debug\BLL.csprojResolveAssemblyReference.cache
+F:\Practice\Book\BookShop\BLL\obj\Debug\BookShop.BLL.dll
+F:\Practice\Book\BookShop\BLL\obj\Debug\BookShop.BLL.pdb
