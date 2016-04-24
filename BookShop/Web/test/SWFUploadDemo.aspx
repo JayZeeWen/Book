@@ -8,6 +8,7 @@
     <title></title>
     <script src="../SWFUpload/handlers.js"></script>
     <script src="../SWFUpload/swfupload.js"></script>
+    <script src="../js/jquery-1.7.1.js"></script>
     <script type="text/javascript">
         var swfu;
         window.onload = function () {
@@ -58,8 +59,10 @@
             });
         }
 
-        function getUpImage() {
-
+        function getUpImage(file,serverData) {
+            //$("#imgUrl").attr("src", serverData);
+            var data = serverData.split(":")
+            $("#divContent").css("backgroundImage", "url(" + data[0] + ")").css("width", data[1] + "px").css("height", data[2] + "px");
         }
     </script>
 </head>
@@ -71,15 +74,16 @@
         <div id="content">
             <div id="swfu_container" style="margin: 0px 10px;">
                 <div>
-                    aaaaaaaaaaaaaaa
-				<span id="spanButtonPlaceholder"></span>
-                    aaaaaaaaaaaaaaaaaaa
+                    <span id="spanButtonPlaceholder"></span>
                 </div>
-                vvvvvv
-		    <div id="divFileProgressContainer" style="height: 75px;"></div>
-                vvvvvvvvvvvvv
-		    <div id="thumbnails"></div>
-                <img id="imgUrl" />
+                <div id="divFileProgressContainer" style="height: 75px;"></div>
+                <div id="thumbnails"></div>
+                <%--<img id="imgUrl" />--%>
+                <div id="divContent" style="width:300px;height:300px">
+                    <div id="divCut" style="width:100px;height:100px;border:1px solid red">
+
+                    </div>
+                </div>
 
 
             </div>

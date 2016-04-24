@@ -20,8 +20,19 @@ namespace BookShop.Web.ashx
             string fileExt = Path.GetExtension(fileName);
             if(fileExt == ".jpg")
             {
-                file.SaveAs(context.Server.MapPath("/UploadImage/"+fileName));
+                string dir = "/UploadImage/" + DateTime.Now.Year + "/" + DateTime.Now.Month + "/" + DateTime.Now.Day + "/";
+                Directory.CreateDirectory(Path.GetDirectoryName(context.Server.MapPath(dir)));//创建文件夹
+                string fullDir = dir + Common.WebCommon.GetStreamMD5(file.InputStream) + fileExt;
+
+                using (Image img = Image.FromStream(file.InputStream))
+                {
+                    file.SaveAs(context.Server.MapPath(fullDir));
+                    context.Response.Write(fullDir + ":" + img.Width + ":" + img.Height);
+                }                
+                //file.SaveAs(context.Server.MapPath("/UploadImage/"+fileName));
+                //context.Response.Write("/UploadImage/" + fileName);
             }
+            
 
         }
 
@@ -32,5 +43,6 @@ namespace BookShop.Web.ashx
                 return false;
             }
         }
+
     }
 }
