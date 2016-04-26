@@ -6,11 +6,16 @@
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
+    <%--<link href="../Css/themes/ui-lightness/jquery-ui-1.8.2.custom.css" rel="stylesheet" />--%>
+    <link href="../Css/ImageAreaSelec/imgareaselect-default.css" rel="stylesheet" />
     <script src="../SWFUpload/handlers.js"></script>
     <script src="../SWFUpload/swfupload.js"></script>
     <script src="../js/jquery-1.7.1.js"></script>
+    <%--<script src="../js/jquery-ui-1.8.2.custom.min.js"></script>--%>
+    <script src="../js/jquery.imgareaselect.min.js"></script>
     <script type="text/javascript">
         var swfu;
+        var imgurl ;
         window.onload = function () {
             swfu = new SWFUpload({
                 // Backend Settings
@@ -62,8 +67,34 @@
         function getUpImage(file,serverData) {
             //$("#imgUrl").attr("src", serverData);
             var data = serverData.split(":")
-            $("#divContent").css("backgroundImage", "url(" + data[0] + ")").css("width", data[1] + "px").css("height", data[2] + "px");
+            imgurl = data[0];
+            //$("#divContent").css("backgroundImage", "url(" + data[0] + ")").css("width", data[1] + "px").css("height", data[2] + "px");
+            $("#selectbanner").attr("src", data[0]);
+            $("#selectbanner").imgAreaSelect({
+                selectionColor: 'blue'
+                , x1: 0
+                , y1: 0
+                , x2: 100
+                , y2: 100
+                , selectionOpacity: 0.2
+                , onSelectEnd: preview
+            })
         }
+
+        function preview(img, selection) {
+
+            $('#selectbanner').data('x', selection.x1);
+
+            $('#selectbanner').data('y', selection.y1);
+
+            $('#selectbanner').data('w', selection.width);
+
+            $('#selectbanner').data('h', selection.height);
+
+        }
+        $(function () {
+            //$("#divCut").draggable({ containment: "parent" }).resizable({ containment: "#divContent" });
+        })
     </script>
 </head>
 <body>
@@ -79,15 +110,35 @@
                 <div id="divFileProgressContainer" style="height: 75px;"></div>
                 <div id="thumbnails"></div>
                 <%--<img id="imgUrl" />--%>
-                <div id="divContent" style="width:300px;height:300px">
+                <%--<div id="divContent" style="width:300px;height:300px">
                     <div id="divCut" style="width:100px;height:100px;border:1px solid red">
 
                     </div>
-                </div>
-
-
+                </div>--%>
+                <img id="selectbanner" />
             </div>
         </div>
+        <div>
+            <img id="imgCut" src="#" />
+        </div>
+        <input type="button" value="Cut" id="btnCut" onclick="CutImg()"/>
     </form>
+    <script type="text/javascript">
+        function CutImg() {
+            var ajax = BookShop.Web.test.SWFUploadDemo;
+            //确定范围
+            //var y = $("#divCut").offset().top - $("#divContent").offset().top;//纵坐标
+            //var x = $("#divCut").offset().left - $("#divContent").offset().left;//横坐标
+            //var width = $("#divCut").width();
+            //var height = $("#divCut").height();
+            var x = $('#selectbanner').data('x');
+            var y = $('#selectbanner').data('y');
+            var width = $('#selectbanner').data('w');
+            var height = $('#selectbanner').data('h');
+            var result = ajax.CutImage(x, y, width, height,imgurl).value;
+            //alert(result);
+            $("#imgCut").attr("src", result);
+        }
+    </script>
 </body>
 </html>

@@ -43,6 +43,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AjaxPro.2, Version=6.10.6.2, Culture=neutral, PublicKeyToken=f19d80cec1ceaeb9, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\AjaxPro.2.dll</HintPath>
+    </Reference>
     <Reference Include="Maticsoft.Common, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\Maticsoft.Common.dll</HintPath>
@@ -68,6 +72,11 @@
     <Content Include="Css\book_list.css" />
     <Content Include="Css\cart.css" />
     <Content Include="Css\demos.css" />
+    <Content Include="Css\ImageAreaSelec\border-anim-h.gif" />
+    <Content Include="Css\ImageAreaSelec\border-anim-v.gif" />
+    <Content Include="Css\ImageAreaSelec\border-h.gif" />
+    <Content Include="Css\ImageAreaSelec\border-v.gif" />
+    <Content Include="Css\ImageAreaSelec\imgareaselect-default.css" />
     <Content Include="Css\index.css" />
     <Content Include="Css\login.css" />
     <Content Include="Css\page_bottom_new.css" />
@@ -223,6 +232,7 @@
     <Content Include="js\jquery-1.4.2.js" />
     <Content Include="js\jquery-1.7.1.js" />
     <Content Include="js\jquery-ui-1.8.2.custom.min.js" />
+    <Content Include="js\jquery.imgareaselect.min.js" />
     <Content Include="js\ui\i18n\jquery-ui-i18n.js" />
     <Content Include="js\ui\i18n\jquery.ui.datepicker-af.js" />
     <Content Include="js\ui\i18n\jquery.ui.datepicker-ar.js" />
