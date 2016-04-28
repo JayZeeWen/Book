@@ -47,6 +47,7 @@ namespace BookShop.DAL
             object obj = DbHelperSQL.GetSingle(sql, new SqlParameter("@loginId", userName));
             return Convert.ToInt32(obj) > 0;
         }
+        
 
 
         /// <summary>
@@ -226,10 +227,34 @@ namespace BookShop.DAL
 		}
 
 
-		/// <summary>
-		/// 得到一个对象实体
-		/// </summary>
-		public BookShop.Model.Users DataRowToModel(DataRow row)
+        public BookShop.Model.Users GetModel(string userName)
+        {
+
+            StringBuilder strSql = new StringBuilder();
+            strSql.Append("select  top 1 Id,LoginId,LoginPwd,Name,Address,Phone,Mail,UserStateId from Users ");
+            strSql.Append(" where LoginId=@LoginId");
+            SqlParameter[] parameters = {
+                    new SqlParameter("@LoginId", SqlDbType.NVarChar,50)
+            };
+            parameters[0].Value = userName;
+
+            BookShop.Model.Users model = new BookShop.Model.Users();
+            DataSet ds = DbHelperSQL.Query(strSql.ToString(), parameters);
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                return DataRowToModel(ds.Tables[0].Rows[0]);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+
+        /// <summary>
+        /// 得到一个对象实体
+        /// </summary>
+        public BookShop.Model.Users DataRowToModel(DataRow row)
 		{
 			BookShop.Model.Users model=new BookShop.Model.Users();
 			if (row != null)
@@ -264,8 +289,10 @@ namespace BookShop.DAL
 				}
 				if(row["UserStateId"]!=null && row["UserStateId"].ToString()!="")
 				{
-					model.UserStateId.Id=int.Parse(row["UserStateId"].ToString());
-				}
+                    DAL.UserStates stateDal = new UserStates();
+                    int Id=int.Parse(row["UserStateId"].ToString());
+                    model.UserStateId = stateDal.GetModel(Id);
+                }
 			}
 			return model;
 		}

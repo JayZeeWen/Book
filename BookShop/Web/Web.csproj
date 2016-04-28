@@ -347,6 +347,8 @@
     <Content Include="js\ui\minified\jquery.ui.sortable.min.js" />
     <Content Include="js\ui\minified\jquery.ui.tabs.min.js" />
     <Content Include="js\ui\minified\jquery.ui.widget.min.js" />
+    <Content Include="Member\Login.aspx" />
+    <Content Include="Member\LoginUser.ascx" />
     <Content Include="Member\Register.aspx" />
     <Content Include="ShowMsg.aspx" />
     <Content Include="SWFUpload\handlers.js" />
@@ -360,6 +362,7 @@
     <Content Include="SWFUpload\swfupload.swf" />
     <Content Include="SWFUpload\swfupload_fp9.swf" />
     <Content Include="test\SWFUploadDemo.aspx" />
+    <Content Include="test\Test.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -367,6 +370,9 @@
   <ItemGroup>
     <Compile Include="ashx\Upload.ashx.cs">
       <DependentUpon>Upload.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="BasePage.cs">
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Common\WebCommon.cs" />
     <Compile Include="Controls\CheckRight.ascx.cs">
@@ -392,6 +398,20 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Member\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Member\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Member\LoginUser.ascx.cs">
+      <DependentUpon>LoginUser.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Member\LoginUser.ascx.designer.cs">
+      <DependentUpon>LoginUser.ascx</DependentUpon>
     </Compile>
     <Compile Include="Member\Reg.Master.cs">
       <DependentUpon>Reg.Master</DependentUpon>
@@ -421,6 +441,13 @@
     </Compile>
     <Compile Include="test\SWFUploadDemo.aspx.designer.cs">
       <DependentUpon>SWFUploadDemo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="test\Test.aspx.cs">
+      <DependentUpon>Test.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="test\Test.aspx.designer.cs">
+      <DependentUpon>Test.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

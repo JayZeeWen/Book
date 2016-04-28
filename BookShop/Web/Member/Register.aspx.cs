@@ -30,6 +30,7 @@ namespace BookShop.Web.Member
                     {
                         //发送激活链接
                         //跳转
+
                         Response.Redirect("/ShowMsg.aspx?msg=" + Server.UrlEncode(msg)
                             + "&txt=" + Server.UrlEncode("首页")
                             + "&url=/Default.aspx");

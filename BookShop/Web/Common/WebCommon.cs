@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Web;
 using System.IO;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace BookShop.Web.Common
 {
@@ -27,6 +29,25 @@ namespace BookShop.Web.Common
             strHashData = strHashData.Replace("-", "");
             strResult = strHashData;
             return strResult;
+        }
+
+        public static void GotoPage()
+        {
+            HttpContext.Current.Response.Redirect("/Member/Login.aspx?retureurl="+HttpContext.Current.Request.Url.ToString());
+        }
+
+        public static string GetMD5(string str)
+        {
+            MD5 md = MD5.Create();
+            byte[] buffer = System.Text.Encoding.UTF8.GetBytes(str);
+            byte[] md5Buffer =  md.ComputeHash(buffer);
+            StringBuilder sb = new StringBuilder();
+            foreach(byte b in md5Buffer)
+            {
+                sb.Append(b.ToString("x2"));
+            }
+            return sb.ToString();
+
         }
 
 

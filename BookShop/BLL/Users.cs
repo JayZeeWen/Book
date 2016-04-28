@@ -50,6 +50,45 @@ namespace BookShop.BLL
 			
 		}
 
+        /// <summary>
+        /// 校验登录
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="pwd"></param>
+        /// <param name="msg"></param>
+        /// <returns></returns>
+        public bool UserLogin(string userName, string pwd, out string msg,out Model.Users model)
+        {
+            model = dal.GetModel(userName);
+            if(model == null)
+            {
+                msg = "该用户名不存在";
+                return false;
+            }
+            else
+            {
+                if(model.UserStateId.Name=="正常")
+                {
+                    if(model.LoginPwd == pwd)
+                    {
+                        msg = "登录成功";
+                        return true;
+                    }
+                    else
+                    {
+                        msg = "密码错误";
+                        return false;   
+                    }
+                }
+                else
+                {
+                    msg = "用户未激活";
+                    return false;
+                }
+            }
+        }
+
+        
         public bool CheckUserName(string userName)
         {
             return dal.CheckUserName(userName);
@@ -196,6 +235,11 @@ namespace BookShop.BLL
 
 		#endregion  BasicMethod
 		#region  ExtensionMethod
+
+        public Model.Users GetModel(string userName)
+        {
+            return dal.GetModel(userName);
+        }
 
 		#endregion  ExtensionMethod
 	}
