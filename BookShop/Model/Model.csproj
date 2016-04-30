@@ -103,6 +103,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Articel_Words.cs" />
+    <Compile Include="BaseParameter.cs" />
     <Compile Include="BookComment.cs" />
     <Compile Include="Books.cs" />
     <Compile Include="Cart.cs" />

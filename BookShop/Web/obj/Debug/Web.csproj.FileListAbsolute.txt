@@ -20,3 +20,4 @@ F:\Practice\Book\BookShop\Web\bin\BookShop.DAL.pdb
 F:\Practice\Book\BookShop\Web\bin\BookShop.DBUtility.pdb
 F:\Practice\Book\BookShop\Web\obj\Debug\BookShop.Web.dll
 F:\Practice\Book\BookShop\Web\obj\Debug\BookShop.Web.pdb
+F:\Practice\Book\BookShop\Web\bin\NVelocity.dll

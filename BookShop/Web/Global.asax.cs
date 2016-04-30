@@ -7,6 +7,8 @@ using System.Configuration;
 using System.Data;
 using System.IO;
 using System.Web.Security;
+using System.Text.RegularExpressions;
+
 namespace BookShop.Web 
 {
 	/// <summary>
@@ -70,7 +72,16 @@ namespace BookShop.Web
 		}
 		protected void Application_BeginRequest(Object sender, EventArgs e)
 		{
-		}
+            #region url重写
+            //获取请求
+            string url = Request.AppRelativeCurrentExecutionFilePath;
+            Match match =  Regex.Match(url, @"~/BookList_(\d+)\.aspx");//正则判断
+            if (match.Success)
+            {
+                Context.RewritePath("/BookList.aspx?pi="+match.Groups[1].Value);
+            }
+            #endregion
+        }
 		protected void Application_EndRequest(Object sender, EventArgs e)
 		{
 		}

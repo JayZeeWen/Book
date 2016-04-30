@@ -2,7 +2,9 @@
 using System.Data;
 using System.Text;
 using System.Data.SqlClient;
+using BookShop.Model;
 using Maticsoft.DBUtility;//Please add references
+
 namespace BookShop.DAL
 {
 	/// <summary>
@@ -397,34 +399,33 @@ namespace BookShop.DAL
 			return DbHelperSQL.Query(strSql.ToString());
 		}
 
-		/*
-		/// <summary>
-		/// 分页获取数据列表
-		/// </summary>
-		public DataSet GetList(int PageSize,int PageIndex,string strWhere)
-		{
-			SqlParameter[] parameters = {
-					new SqlParameter("@tblName", SqlDbType.VarChar, 255),
-					new SqlParameter("@fldName", SqlDbType.VarChar, 255),
-					new SqlParameter("@PageSize", SqlDbType.Int),
-					new SqlParameter("@PageIndex", SqlDbType.Int),
-					new SqlParameter("@IsReCount", SqlDbType.Bit),
-					new SqlParameter("@OrderType", SqlDbType.Bit),
-					new SqlParameter("@strWhere", SqlDbType.VarChar,1000),
-					};
-			parameters[0].Value = "Books";
-			parameters[1].Value = "Id";
-			parameters[2].Value = PageSize;
-			parameters[3].Value = PageIndex;
-			parameters[4].Value = 0;
-			parameters[5].Value = 0;
-			parameters[6].Value = strWhere;	
-			return DbHelperSQL.RunProcedure("UP_GetRecordByPage",parameters,"ds");
-		}*/
-
 		#endregion  BasicMethod
 		#region  ExtensionMethod
+        public DataSet GetDataSetByPara(BaseParameter para,out int totalCount)
+        {
+            StringBuilder sb = new StringBuilder();
+            if (para.KeyValues != null)
+            {
+                if (para.KeyValues.ContainsKey("CategoryId"))
+                {
+                    sb.Append(" AND　CategoryId = " + para.KeyValues["CategoryId"]);
+                }
+            }
+            string sql = string.Format( @" select * from (
+	                            select row_number() over ( order by  b.{1}) as rw 
+		                            , b.* 
+	                            from Books b where 0 = 0 {0}
+                            ) t where rw between @p_begin_index and @p_end_inedex
 
+                            select count(1) from Books where 0 = 0 {0}",sb.ToString(),para.OrderKey??"Id");
+
+            DataSet ds = DbHelperSQL.Query(sql.ToString()
+                ,new SqlParameter("@p_begin_index",para.PageBeginIndex)
+                ,new SqlParameter("@p_end_inedex",para.PageEndIndex));
+            totalCount = Convert.ToInt32(ds.Tables[1].Rows[0][0]);
+            return ds;
+
+        }
 		#endregion  ExtensionMethod
 	}
 }

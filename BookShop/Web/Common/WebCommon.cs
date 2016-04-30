@@ -31,6 +31,7 @@ namespace BookShop.Web.Common
             return strResult;
         }
 
+       
         public static void GotoPage()
         {
             HttpContext.Current.Response.Redirect("/Member/Login.aspx?retureurl="+HttpContext.Current.Request.Url.ToString());
@@ -47,7 +48,39 @@ namespace BookShop.Web.Common
                 sb.Append(b.ToString("x2"));
             }
             return sb.ToString();
+        }
 
+        /// <summary>
+        /// 将具体的时间差转换为文字
+        /// </summary>
+        /// <param name="ts"></param>
+        /// <returns></returns>
+        public static string GetTimeSpan(TimeSpan ts)
+        {
+            if(ts.TotalDays >= 365)
+            {
+                return Math.Floor( ts.TotalDays / 365) + "年前";
+            }
+            else if(ts.TotalDays >= 30)
+            {
+                return Math.Floor(ts.TotalDays / 30) + "月前";
+            }
+            else if(ts.TotalHours >= 24)
+            {
+                return Math.Floor(ts.TotalDays) + "天前";
+            }
+            else if(ts.TotalHours >= 1)
+            {
+                return Math.Floor(ts.TotalHours) + "小时前";
+            }
+            else if (ts.TotalMinutes >= 1 )
+            {
+                return Math.Floor(ts.TotalMinutes) + "分钟前";
+            }
+            else
+            {
+                return "刚刚";
+            }
         }
 
 

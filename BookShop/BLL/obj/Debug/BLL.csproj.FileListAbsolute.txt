@@ -12,3 +12,4 @@ F:\Practice\Book\BookShop\BLL\bin\Debug\BookShop.DBUtility.pdb
 F:\Practice\Book\BookShop\BLL\obj\Debug\BLL.csprojResolveAssemblyReference.cache
 F:\Practice\Book\BookShop\BLL\obj\Debug\BookShop.BLL.dll
 F:\Practice\Book\BookShop\BLL\obj\Debug\BookShop.BLL.pdb
+F:\Practice\Book\BookShop\BLL\bin\Debug\NVelocity.dll
